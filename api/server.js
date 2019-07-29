@@ -1,12 +1,10 @@
 const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
+
+const configureMiddleware = require('./middleware.js');
 
 const server = express();
 
-server.use(helmet()); 
-server.use(cors());
-server.use(express.json());
+configureMiddleware(server);
 
 server.get('/', (req, res) => {
     res.send(`It's working.gif`)
