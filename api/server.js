@@ -1,13 +1,24 @@
 const express = require('express');
-
-const configureMiddleware = require('./middleware.js');
+const cors = require('cors');
+const helmet = require('helmet');
 
 const server = express();
 
-configureMiddleware(server);
+server.use(helmet());
+server.use(cors());
+server.use(express.json());
+
+const authRouter = require('./auth/auth-router.js');
+const usersRouter = require('./users/users-router.js');
+
+
+
+server.use('/api/auth', authRouter);
+server.use('/api/users', usersRouter);
+
 
 server.get('/', (req, res) => {
-    res.send(`It's working.gif`)
+    res.send(`Server is currently running!`)
 })
 
 module.exports = server;
