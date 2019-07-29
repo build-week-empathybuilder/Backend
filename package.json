@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/build-week-empathybuilder/Backend.git",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js"
+  },
   "author": "MWeberLambdaweb19 <'mack.webb37@gmail.com'>",
   "license": "MIT",
   "dependencies": {
