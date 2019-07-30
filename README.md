@@ -18,14 +18,14 @@ OR
 If using Herokuu, continue here, otherwise scroll down to local machine:
 
 5) Copy and paste the link from herokuu into the address bar, and click send.
-6) Your REST client should return with the following message "Server is currently running!"
+6) Your REST client should return with the following message "Welcome to the server!"
 
 If using your local machine, start here:
 
 5) In your terminal, CD to the directory where you cloned the repo. Type the command `yarn start` (you may need to install yarn, or use the command `npm run start`, however, as npm and yarn do not like to work together, there may be issues).
 6) In your terminal window, you should see the following message '=== Server listening on port 8000 ===' DO NOT CLOSE OUT OF THIS WINDOW, as this is where your server is running. When you are finished utilizing the server, you may close this window.
 7) In the address bar of your REST client, type the following:
-`http://localhost:8000/`, and hit SEND. Your client should return with "Server is currently running!"
+`http://localhost:8000/`, and hit SEND. Your client should return with "Thank you for using the server!"
 
 Differences between Herokuu and localhost end here.
 
