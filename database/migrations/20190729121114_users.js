@@ -9,6 +9,9 @@ exports.up = function(knex) {
       users
       .string('password', 255)
       .notNullable();
+      users
+      .string('email', 255)
+      .notNullable();
   });
 };
 
