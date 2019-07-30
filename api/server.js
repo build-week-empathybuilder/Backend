@@ -18,7 +18,8 @@ server.use('/api/users', usersRouter);
 
 
 server.get('/', (req, res) => {
-    res.send(`Server is currently running!`)
+    const messageOfTheDay = process.env.MOTD || "Welcome to the server!"
+    res.send(`<h1>${messageOfTheDay}</h1>`)
 })
 
 module.exports = server;
