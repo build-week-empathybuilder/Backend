@@ -33,12 +33,12 @@ function findBy(user) {
 // THESE METHODS WILL BE REMOVED WHEN APP IS PUBLISHED
 
 function find() {
-    return db('users').select('id','username', 'password');
+    return db('users').select('id','username',);
 }
 
 function findById(id) {
     return db('users')
-    .select('id', 'username', 'password')
+    .select('id', 'username',)
     .where({id})
     .first();
 }
