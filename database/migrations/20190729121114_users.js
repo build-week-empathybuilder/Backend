@@ -57,13 +57,11 @@ exports.up = function(knex) {
     food.integer('groceries')
     .unsigned();
 
-    food.integer('restaurants/takeout')
+    food.integer('restaurants_takeout')
     .unsigned();
 
     food.integer('food_total')
-    .unsigned()
-    .references('food_total')
-    .inTable('calc1');
+    .unsigned();
   })
   .createTable('transportation', car => {
     car.increments();
@@ -90,10 +88,8 @@ exports.up = function(knex) {
     car.integer('public_transit_costs')
     .unsigned();
 
-    car.integer('transport_total')
-    .unsigned()
-    .references('transport_total')
-    .inTable('calc1');
+    car.integer('transportation_total')
+    .unsigned();
   })
   .createTable('health_care', health => {
     health.increments();
@@ -115,9 +111,7 @@ exports.up = function(knex) {
     .unsigned();
 
     health.integer('health_care_total')
-    .unsigned()
-    .references('health_care_total')
-    .inTable('calc1');
+    .unsigned();
   })
   .createTable('debt', debt => {
     debt.increments();
@@ -139,9 +133,7 @@ exports.up = function(knex) {
     .unsigned();
 
     debt.integer('debt_total')
-    .unsigned()
-    .references('debt_total')
-    .inTable('calc1');
+    .unsigned();
   })
   .createTable('housing', housing => {
     housing.increments();
@@ -160,9 +152,7 @@ exports.up = function(knex) {
     .unsigned();
 
     housing.integer('housing_total')
-    .unsigned()
-    .references('housing_total')
-    .inTable('calc1');
+    .unsigned();
   })
   .createTable('utilities', utilities => {
     utilities.increments();
@@ -183,7 +173,7 @@ exports.up = function(knex) {
     utilities.integer('water')
     .unsigned();
 
-    utilities.integer('phone/mobile')
+    utilities.integer('phone_mobile')
     .unsigned();
 
     utilities.integer('internet')
@@ -193,9 +183,7 @@ exports.up = function(knex) {
     .unsigned();
 
     utilities.integer('utilities_total')
-    .unsigned()
-    .references('utilities_total')
-    .inTable('calc1');
+    .unsigned();
   })
   .createTable('clothing', clothing => {
     clothing.increments();
@@ -213,13 +201,11 @@ exports.up = function(knex) {
     clothing.integer('children')
     .unsigned();
 
-    clothing.integer('cleaning/laundry')
+    clothing.integer('cleaning_laundry')
     .unsigned();
 
     clothing.integer('clothing_total')
-    .unsigned()
-    .references('clothing_total')
-    .inTable('calc1');
+    .unsigned();
   })
 };
 
