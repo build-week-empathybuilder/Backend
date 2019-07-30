@@ -8,7 +8,7 @@ Requirements:
 [] Insomnia, Postman, or a similar REST client
 [] A cloned copy of this repo (please do not push) 
 OR
-[] Access to the herokuu link (link: )
+[] Access to the herokuu link (link: `https://dashboard.heroku.com/apps/backend-buildweek-web22-mw/deploy/github` )
 
 1) Install your REST client per your OS's version instructions
 2) Create a "New Request", and give it a descriptive name. This is only a placeholder value, what happens will be in the next step
