@@ -71,4 +71,53 @@ router.post('/', (req, res) => {
     })
 })
 
+router.put('/:id', (req, res) => {
+    const updatedCalc = req.body;
+    const {id} = req.params;
+    const {userId} = req.body;
+    const {foodTotal} = req.body;
+    const {transportationTotal} = req.body;
+    const {healthCareTotal} = req.body;
+    const {debtTotal} = req.body;
+    const {housingTotal} = req.body;
+    const {utilitiesTotal} = req.body;
+    const {clothingTotal} = req.body;
+    if (!userId) {
+        res.status(422).json({message: "Missing updated fields: userId"})
+    }
+    if (!foodTotal) {
+        res.status(422).json({message: "Missing updated fields: foodTotal"})
+    }
+    if (!transportationTotal) {
+        res.status(422).json({message: "Missing updated fields: transportationTotal"})
+    }
+    if (!healthCareTotal) {
+        res.status(422).json({message: "Missing updated fields: healthCareTotal"})
+    }
+    if (!debtTotal) {
+        res.status(422).json({message: "Missing updated fields: debtTotal"})
+    }
+    if (!housingTotal) {
+        res.status(422).json({message: "Missing updated fields: housingTotal"})
+    }
+    if (!utilitiesTotal) {
+        res.status(422).json({message: "Missing updated fields: utilitiesTotal"})
+    }
+    if (!clothingTotal) {
+        res.status(422).json({message: "Missing updated fields: clothingTotal"})
+    }
+    console.log(updatedCalc);
+    calc1.update(id, updatedCalc)
+    .then(calc => {
+        if (calc) {
+        res.status(201).json(calc)
+        } else {
+        res.status(404).json({message: "This personal calculator for this user does not exist!"})
+        }
+    })
+    .catch(err => {
+        res.status(500).json(err)
+    })
+})
+
 module.exports = router;
