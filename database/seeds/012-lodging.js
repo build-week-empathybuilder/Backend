@@ -5,12 +5,12 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('lodging').insert([
-        {user_id: 1, lodging_total: 300, hotel_rate: 100, expected_length_of_stay: 100},
-        {user_id: 2, lodging_total: 400, hotel_rate: 150, expected_length_of_stay: 150},
-        {user_id: 3, lodging_total: 500, hotel_rate: 200, expected_length_of_stay: 100},
-        {user_id: 4, lodging_total: 600, hotel_rate: 200, expected_length_of_stay: 200},
-        {user_id: 5, lodging_total: 700, hotel_rate: 100, expected_length_of_stay: 100},
-        {user_id: 6, lodging_total: 800, hotel_rate: 300, expected_length_of_stay: 300},
+        {userId: 1, lodgingTotal: 300, hotelRate: 100, expectedLengthOfStay: 100},
+        {userId: 2, lodgingTotal: 400, hotelRate: 150, expectedLengthOfStay: 150},
+        {userId: 3, lodgingTotal: 500, hotelRate: 200, expectedLengthOfStay: 100},
+        {userId: 4, lodgingTotal: 600, hotelRate: 200, expectedLengthOfStay: 200},
+        {userId: 5, lodgingTotal: 700, hotelRate: 100, expectedLengthOfStay: 100},
+        {userId: 6, lodgingTotal: 800, hotelRate: 300, expectedLengthOfStay: 300},
       ]);
     });
 };

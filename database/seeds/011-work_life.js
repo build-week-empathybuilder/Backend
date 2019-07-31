@@ -1,16 +1,16 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('work_life').del()
+  return knex('workLife').del()
     .then(function () {
       // Inserts seed entries
-      return knex('work_life').insert([
-        {user_id: 1, work_life_total: 500, income_loss: 300, job_skills_training: 100, miscellaneous_fees: 100},
-        {user_id: 2, work_life_total: 600, income_loss: 400, job_skills_training: 100, miscellaneous_fees: 100},
-        {user_id: 3, work_life_total: 700, income_loss: 400, job_skills_training: 200, miscellaneous_fees: 100},
-        {user_id: 4, work_life_total: 800, income_loss: 600, job_skills_training: 100, miscellaneous_fees: 100},
-        {user_id: 5, work_life_total: 900, income_loss: 700, job_skills_training: 100, miscellaneous_fees: 100},
-        {user_id: 6, work_life_total: 1000, income_loss: 800, job_skills_training: 100, miscellaneous_fees: 100},
+      return knex('workLife').insert([
+        {userId: 1, workLifeTotal: 500, incomeLoss: 300, jobSkillsTraining: 100, miscellaneousFees: 100},
+        {userId: 2, workLifeTotal: 600, incomeLoss: 400, jobSkillsTraining: 100, miscellaneousFees: 100},
+        {userId: 3, workLifeTotal: 700, incomeLoss: 400, jobSkillsTraining: 200, miscellaneousFees: 100},
+        {userId: 4, workLifeTotal: 800, incomeLoss: 600, jobSkillsTraining: 100, miscellaneousFees: 100},
+        {userId: 5, workLifeTotal: 900, incomeLoss: 700, jobSkillsTraining: 100, miscellaneousFees: 100},
+        {userId: 6, workLifeTotal: 1000, incomeLoss: 800, jobSkillsTraining: 100, miscellaneousFees: 100},
       ]);
     });
 };

@@ -17,38 +17,38 @@ exports.up = function(knex) {
   .createTable('calc1', calc1 => {
     calc1.increments();
     
-    calc1.integer('user_id')
+    calc1.integer('userId')
     .unsigned()
     .references('id')
     .inTable('users')
     .onDelete('CASCADE')
     .onUpdate('CASCADE');
 
-    calc1.integer('food_total')
+    calc1.integer('foodTotal')
     .unsigned();
 
-    calc1.integer('transportation_total')
+    calc1.integer('transportationTotal')
     .unsigned();
 
-    calc1.integer('health_care_total')
+    calc1.integer('healthCareTotal')
     .unsigned();
 
-    calc1.integer('debt_total')
+    calc1.integer('debtTotal')
     .unsigned();
 
-    calc1.integer('housing_total')
+    calc1.integer('housingTotal')
     .unsigned();
 
-    calc1.integer('utilities_total')
+    calc1.integer('utilitiesTotal')
     .unsigned();
 
-    calc1.integer('clothing_total')
+    calc1.integer('clothingTotal')
     .unsigned();
   })
   .createTable('food', food => {
     food.increments();
 
-    food.integer('user_id')
+    food.integer('userId')
     .unsigned()
     .references('id')
     .inTable('users')
@@ -58,26 +58,26 @@ exports.up = function(knex) {
     food.integer('groceries')
     .unsigned();
 
-    food.integer('restaurants_takeout')
+    food.integer('restaurantsTakeout')
     .unsigned();
 
-    food.integer('food_total')
+    food.integer('foodTotal')
     .unsigned();
   })
   .createTable('transportation', car => {
     car.increments();
 
-    car.integer('user_id')
+    car.integer('userId')
     .unsigned()
     .references('id')
     .inTable('users')
     .onDelete('CASCADE')
     .onUpdate('CASCADE');
 
-    car.integer('car_insurance')
+    car.integer('carInsurance')
     .unsigned();
 
-    car.integer('car_payment')
+    car.integer('carPayment')
     .unsigned();
 
     car.integer('gas')
@@ -86,60 +86,60 @@ exports.up = function(knex) {
     car.integer('parking')
     .unsigned();
 
-    car.integer('public_transit_costs')
+    car.integer('publicTransitCosts')
     .unsigned();
 
-    car.integer('transportation_total')
+    car.integer('transportationTotal')
     .unsigned();
   })
-  .createTable('health_care', health => {
+  .createTable('healthCare', health => {
     health.increments();
 
-    health.integer('user_id')
+    health.integer('userId')
     .unsigned()
     .references('id')
     .inTable('users')
     .onDelete('CASCADE')
     .onUpdate('CASCADE');
 
-    health.integer('insurance_cost')
+    health.integer('insuranceCost')
     .unsigned();
 
     health.integer('copays')
     .unsigned();
 
-    health.integer('rx_and_medical_equipment')
+    health.integer('rxAndMedicalEquipment')
     .unsigned();
 
-    health.integer('health_care_total')
+    health.integer('healthCareTotal')
     .unsigned();
   })
   .createTable('debt', debt => {
     debt.increments();
 
-    debt.integer('user_id')
+    debt.integer('userId')
     .unsigned()
     .references('id')
     .inTable('users')
     .onDelete('CASCADE')
     .onUpdate('CASCADE');
 
-    debt.integer('personal_loans')
+    debt.integer('personalLoans')
     .unsigned();
 
-    debt.integer('student_loans')
+    debt.integer('studentLoans')
     .unsigned();
 
-    debt.integer('credit_card_payments')
+    debt.integer('creditCardPayments')
     .unsigned();
 
-    debt.integer('debt_total')
+    debt.integer('debtTotal')
     .unsigned();
   })
   .createTable('housing', housing => {
     housing.increments();
 
-    housing.integer('user_id')
+    housing.integer('userId')
     .unsigned()
     .references('id')
     .inTable('users')
@@ -152,13 +152,13 @@ exports.up = function(knex) {
     housing.integer('deposit')
     .unsigned();
 
-    housing.integer('housing_total')
+    housing.integer('housingTotal')
     .unsigned();
   })
   .createTable('utilities', utilities => {
     utilities.increments();
 
-    utilities.integer('user_id')
+    utilities.integer('userId')
     .unsigned()
     .references('id')
     .inTable('users')
@@ -174,7 +174,7 @@ exports.up = function(knex) {
     utilities.integer('water')
     .unsigned();
 
-    utilities.integer('phone_mobile')
+    utilities.integer('phoneMobile')
     .unsigned();
 
     utilities.integer('internet')
@@ -183,13 +183,13 @@ exports.up = function(knex) {
     utilities.integer('cable')
     .unsigned();
 
-    utilities.integer('utilities_total')
+    utilities.integer('utilitiesTotal')
     .unsigned();
   })
   .createTable('clothing', clothing => {
     clothing.increments();
 
-    clothing.integer('user_id')
+    clothing.integer('userId')
     .unsigned()
     .references('id')
     .inTable('users')
@@ -202,155 +202,155 @@ exports.up = function(knex) {
     clothing.integer('children')
     .unsigned();
 
-    clothing.integer('cleaning_laundry')
+    clothing.integer('cleaningLaundry')
     .unsigned();
 
-    clothing.integer('clothing_total')
+    clothing.integer('clothingTotal')
     .unsigned();
   })
   // This is where the tables under CALC2 begin!
   .createTable('calc2', calc2 => {
     calc2.increments();
 
-    calc2.integer('user_id')
+    calc2.integer('userId')
     .unsigned()
     .references('id')
     .inTable('users')
     .onDelete('CASCADE')
     .onUpdate('CASCADE');
 
-    calc2.integer('work_life_total')
+    calc2.integer('workLifeTotal')
     .unsigned();
 
-    calc2.integer('lodging_total')
+    calc2.integer('lodgingTotal')
     .unsigned();
 
-    calc2.integer('new_home_total')
+    calc2.integer('newHomeTotal')
     .unsigned();
 
-    calc2.integer('new_transportation_total')
+    calc2.integer('newTransportationTotal')
     .unsigned();
 
-    calc2.integer('miscellaneous_expenses_total')
+    calc2.integer('miscellaneousExpensesTotal')
     .unsigned();
   })
-  .createTable('work_life', work => {
+  .createTable('workLife', work => {
     work.increments();
 
-    work.integer('user_id')
+    work.integer('userId')
     .unsigned()
     .references('id')
     .inTable('users')
     .onDelete('CASCADE')
     .onUpdate('CASCADE');
 
-    work.integer('income_loss')
+    work.integer('incomeLoss')
     .unsigned();
 
-    work.integer('job_skills_training')
+    work.integer('jobSkillsTraining')
     .unsigned();
 
-    work.integer('miscellaneous_fees')
+    work.integer('miscellaneousFees')
     .unsigned();
 
-    work.integer('work_life_total')
+    work.integer('workLifeTotal')
     .unsigned();
   })
   .createTable('lodging', lodge => {
     lodge.increments();
 
-    lodge.integer('user_id')
+    lodge.integer('userId')
     .unsigned()
     .references('id')
     .inTable('users')
     .onDelete('CASCADE')
     .onUpdate('CASCADE');
 
-    lodge.integer('hotel_rate')
+    lodge.integer('hotelRate')
     .unsigned();
 
-    lodge.integer('expected_length_of_stay')
+    lodge.integer('expectedLengthOfStay')
     .unsigned();
 
-    lodge.integer('lodging_total')
+    lodge.integer('lodgingTotal')
     .unsigned();
   })
-  .createTable('new_home', home => {
+  .createTable('newHome', home => {
     home.increments();
 
-    home.integer('user_id')
+    home.integer('userId')
     .unsigned()
     .references('id')
     .inTable('users')
     .onDelete('CASCADE')
     .onUpdate('CASCADE');
 
-    home.integer('housing_deposit')
+    home.integer('housingDeposit')
     .unsigned();
 
-    home.integer('utilities_deposit')
+    home.integer('utilitiesDeposit')
     .unsigned();
 
     home.integer('rent')
     .unsigned();
 
-    home.integer('miscellaneous_fees')
+    home.integer('miscellaneousFees')
     .unsigned();
 
-    home.integer('new_home_total')
+    home.integer('newHomeTotal')
     .unsigned();
   })
-  .createTable('new_transportation', transport => {
+  .createTable('newTransportation', transport => {
     transport.increments();
 
-    transport.integer('user_id')
+    transport.integer('userId')
     .unsigned()
     .references('id')
     .inTable('users')
     .onDelete('CASCADE')
     .onUpdate('CASCADE');
 
-    transport.integer('car_rental')
+    transport.integer('carRental')
     .unsigned();
 
-    transport.integer('moving_truck_rental')
+    transport.integer('movingTruckRental')
     .unsigned();
 
     transport.integer('gas')
     .unsigned();
 
-    transport.integer('airline_bus_tickets')
+    transport.integer('airlineBusTickets')
     .unsigned();
 
-    transport.integer('new_transportation_total')
+    transport.integer('newTransportationTotal')
     .unsigned();
   })
-  .createTable('miscellaneous_expenses', misc => {
+  .createTable('miscellaneousExpenses', misc => {
     misc.increments();
 
-    misc.integer('user_id')
+    misc.integer('userId')
     .unsigned()
     .references('id')
     .inTable('users')
     .onDelete('CASCADE')
     .onUpdate('CASCADE');
 
-    misc.integer('storage_unit')
+    misc.integer('storageUnit')
     .unsigned();
 
-    misc.integer('furniture_appliances')
+    misc.integer('furnitureAppliances')
     .unsigned();
 
-    misc.integer('pet_expenses')
+    misc.integer('petExpenses')
     .unsigned();
 
-    misc.integer('cell_phone_disconnection_fees')
+    misc.integer('cellPhoneDisconnectionFees')
     .unsigned();
 
-    misc.integer('additional_security_measures')
+    misc.integer('additionalSecurityMeasures')
     .unsigned();
 
-    misc.integer('miscellaneous_expenses_total')
+    misc.integer('miscellaneousExpensesTotal')
     .unsigned();
   })
 };

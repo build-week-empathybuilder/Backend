@@ -5,12 +5,12 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('debt').insert([
-        {user_id: 1, debt_total: 1600, personal_loans: 500, student_loans: 500, credit_card_payments: 600},
-        {user_id: 2, debt_total: 1500, personal_loans: 500, student_loans: 500, credit_card_payments: 500},
-        {user_id: 3, debt_total: 1400, personal_loans: 300, student_loans: 300, credit_card_payments: 800},
-        {user_id: 4, debt_total: 1300, personal_loans: 400, student_loans: 400, credit_card_payments: 500},
-        {user_id: 5, debt_total: 1200, personal_loans: 400, student_loans: 400, credit_card_payments: 400},
-        {user_id: 6, debt_total: 1100, personal_loans: 500, student_loans: 500, credit_card_payments: 100}
+        {userId: 1, debtTotal: 1600, personalLoans: 500, studentLoans: 500, creditCardPayments: 600},
+        {userId: 2, debtTotal: 1500, personalLoans: 500, studentLoans: 500, creditCardPayments: 500},
+        {userId: 3, debtTotal: 1400, personalLoans: 300, studentLoans: 300, creditCardPayments: 800},
+        {userId: 4, debtTotal: 1300, personalLoans: 400, studentLoans: 400, creditCardPayments: 500},
+        {userId: 5, debtTotal: 1200, personalLoans: 400, studentLoans: 400, creditCardPayments: 400},
+        {userId: 6, debtTotal: 1100, personalLoans: 500, studentLoans: 500, creditCardPayments: 100}
       ]);
     });
 };

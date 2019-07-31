@@ -1,16 +1,16 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('new_transportation').del()
+  return knex('newTransportation').del()
     .then(function () {
       // Inserts seed entries
-      return knex('new_transportation').insert([
-        {user_id: 1, new_transportation_total: 1600, car_rental: 400, moving_truck_rental: 500, gas: 600, airline_bus_tickets: 100},
-        {user_id: 2, new_transportation_total: 1500, car_rental: 400, moving_truck_rental: 500, gas: 500, airline_bus_tickets: 100},
-        {user_id: 3, new_transportation_total: 1400, car_rental: 200, moving_truck_rental: 300, gas: 800, airline_bus_tickets: 100},
-        {user_id: 4, new_transportation_total: 1300, car_rental: 300, moving_truck_rental: 400, gas: 500, airline_bus_tickets: 100},
-        {user_id: 5, new_transportation_total: 1200, car_rental: 300, moving_truck_rental: 400, gas: 400, airline_bus_tickets: 100},
-        {user_id: 6, new_transportation_total: 1100, car_rental: 400, moving_truck_rental: 500, gas: 100, airline_bus_tickets: 100}
+      return knex('newTransportation').insert([
+        {userId: 1, newTransportationTotal: 1600, carRental: 400, movingTruckRental: 500, gas: 600, airlineBusTickets: 100},
+        {userId: 2, newTransportationTotal: 1500, carRental: 400, movingTruckRental: 500, gas: 500, airlineBusTickets: 100},
+        {userId: 3, newTransportationTotal: 1400, carRental: 200, movingTruckRental: 300, gas: 800, airlineBusTickets: 100},
+        {userId: 4, newTransportationTotal: 1300, carRental: 300, movingTruckRental: 400, gas: 500, airlineBusTickets: 100},
+        {userId: 5, newTransportationTotal: 1200, carRental: 300, movingTruckRental: 400, gas: 400, airlineBusTickets: 100},
+        {userId: 6, newTransportationTotal: 1100, carRental: 400, movingTruckRental: 500, gas: 100, airlineBusTickets: 100}
       ]);
     });
 };

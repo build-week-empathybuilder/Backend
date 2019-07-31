@@ -1,16 +1,16 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('new_home').del()
+  return knex('newHome').del()
     .then(function () {
       // Inserts seed entries
-      return knex('new_home').insert([
-        {user_id: 1, new_home_total: 900, housing_deposit: 200, utilities_deposit: 300, rent: 300, miscellaneous_fees: 100},
-        {user_id: 2, new_home_total: 1000, housing_deposit: 300, utilities_deposit: 400, rent: 200, miscellaneous_fees: 100},
-        {user_id: 3, new_home_total: 1500, housing_deposit: 400, utilities_deposit: 500, rent: 500, miscellaneous_fees: 100},
-        {user_id: 4, new_home_total: 2000, housing_deposit: 500, utilities_deposit: 600, rent: 800, miscellaneous_fees: 100},
-        {user_id: 5, new_home_total: 2500, housing_deposit: 400, utilities_deposit: 500, rent: 1500, miscellaneous_fees: 100},
-        {user_id: 6, new_home_total: 3000, housing_deposit: 2900, utilities_deposit: 1000, rent: 1000, miscellaneous_fees: 100},
+      return knex('newHome').insert([
+        {userId: 1, newHomeTotal: 900, housingDeposit: 200, utilitiesDeposit: 300, rent: 300, miscellaneousFees: 100},
+        {userId: 2, newHomeTotal: 1000, housingDeposit: 300, utilitiesDeposit: 400, rent: 200, miscellaneousFees: 100},
+        {userId: 3, newHomeTotal: 1500, housingDeposit: 400, utilitiesDeposit: 500, rent: 500, miscellaneousFees: 100},
+        {userId: 4, newHomeTotal: 2000, housingDeposit: 500, utilitiesDeposit: 600, rent: 800, miscellaneousFees: 100},
+        {userId: 5, newHomeTotal: 2500, housingDeposit: 400, utilitiesDeposit: 500, rent: 1500, miscellaneousFees: 100},
+        {userId: 6, newHomeTotal: 3000, housingDeposit: 2900, utilitiesDeposit: 1000, rent: 1000, miscellaneousFees: 100},
       ]);
     });
 };

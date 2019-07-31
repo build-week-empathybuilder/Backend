@@ -5,12 +5,12 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('calc2').insert([
-        {user_id: 1, work_life_total: 500, lodging_total: 300, new_home_total: 900, new_transportation_total: 1600, miscellaneous_expenses_total: 700},
-        {user_id: 2, work_life_total: 600, lodging_total: 250, new_home_total: 1000, new_transportation_total: 1500, miscellaneous_expenses_total: 800},
-        {user_id: 3, work_life_total: 700, lodging_total: 200, new_home_total: 1500, new_transportation_total: 1400, miscellaneous_expenses_total: 900},
-        {user_id: 4, work_life_total: 800, lodging_total: 150, new_home_total: 2000, new_transportation_total: 1300, miscellaneous_expenses_total: 1000},
-        {user_id: 5, work_life_total: 900, lodging_total: 100, new_home_total: 2500, new_transportation_total: 1200, miscellaneous_expenses_total: 1100},
-        {user_id: 6, work_life_total: 1000, lodging_total: 50, new_home_total: 3000, new_transportation_total: 1100, miscellaneous_expenses_total: 1200},
+        {userId: 1, workLifeTotal: 500, lodgingTotal: 300, newHomeTotal: 900, newTransportationTotal: 1600, miscellaneousExpensesTotal: 700},
+        {userId: 2, workLifeTotal: 600, lodgingTotal: 250, newHomeTotal: 1000, newTransportationTotal: 1500, miscellaneousExpensesTotal: 800},
+        {userId: 3, workLifeTotal: 700, lodgingTotal: 200, newHomeTotal: 1500, newTransportationTotal: 1400, miscellaneousExpensesTotal: 900},
+        {userId: 4, workLifeTotal: 800, lodgingTotal: 150, newHomeTotal: 2000, newTransportationTotal: 1300, miscellaneousExpensesTotal: 1000},
+        {userId: 5, workLifeTotal: 900, lodgingTotal: 100, newHomeTotal: 2500, newTransportationTotal: 1200, miscellaneousExpensesTotal: 1100},
+        {userId: 6, workLifeTotal: 1000, lodgingTotal: 50, newHomeTotal: 3000, newTransportationTotal: 1100, miscellaneousExpensesTotal: 1200},
       ]);
     });
 };

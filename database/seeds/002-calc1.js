@@ -5,12 +5,12 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('calc1').insert([
-        {user_id: 1, food_total: 500, transportation_total: 300, health_care_total: 900, debt_total: 1600, housing_total: 700, utilities_total: 100, clothing_total: 100},
-        {user_id: 2, food_total: 600, transportation_total: 250, health_care_total: 1000, debt_total: 1500, housing_total: 800, utilities_total: 90, clothing_total: 110},
-        {user_id: 3, food_total: 700, transportation_total: 200, health_care_total: 1500, debt_total: 1400, housing_total: 900, utilities_total: 80, clothing_total: 120},
-        {user_id: 4, food_total: 800, transportation_total: 150, health_care_total: 2000, debt_total: 1300, housing_total: 1000, utilities_total: 70, clothing_total: 130},
-        {user_id: 5, food_total: 900, transportation_total: 100, health_care_total: 2500, debt_total: 1200, housing_total: 1100, utilities_total: 60, clothing_total: 140},
-        {user_id: 6, food_total: 1000, transportation_total: 50, health_care_total: 3000, debt_total: 1100, housing_total: 1200, utilities_total: 50, clothing_total: 150},
+        {userId: 1, foodTotal: 500, transportationTotal: 300, healthCareTotal: 900, debtTotal: 1600, housingTotal: 700, utilitiesTotal: 100, clothingTotal: 100},
+        {userId: 2, foodTotal: 600, transportationTotal: 250, healthCareTotal: 1000, debtTotal: 1500, housingTotal: 800, utilitiesTotal: 90, clothingTotal: 110},
+        {userId: 3, foodTotal: 700, transportationTotal: 200, healthCareTotal: 1500, debtTotal: 1400, housingTotal: 900, utilitiesTotal: 80, clothingTotal: 120},
+        {userId: 4, foodTotal: 800, transportationTotal: 150, healthCareTotal: 2000, debtTotal: 1300, housingTotal: 1000, utilitiesTotal: 70, clothingTotal: 130},
+        {userId: 5, foodTotal: 900, transportationTotal: 100, healthCareTotal: 2500, debtTotal: 1200, housingTotal: 1100, utilitiesTotal: 60, clothingTotal: 140},
+        {userId: 6, foodTotal: 1000, transportationTotal: 50, healthCareTotal: 3000, debtTotal: 1100, housingTotal: 1200, utilitiesTotal: 50, clothingTotal: 150},
       ]);
     });
 };
