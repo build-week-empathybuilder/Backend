@@ -4,8 +4,10 @@ module.exports = {
     add,
     find,
     findBy,
-    findById,
+    findByUser,
+    findByItemId,
     update,
+    updateByItemId,
     remove,
 };
 
@@ -30,10 +32,19 @@ function findBy(item) {
     .first();
 };
 
-function findById(id) {
+function findByItemId(userId, id) {
     return db('transportation')
-    .where({id})
-    .first();
+    .join('users', 'users.id', 'transportation.userId')
+    .where('transportation.userId', userId)
+    .select('transportation.*')
+    .where('transportation.id', id)
+}
+
+function findByUser(userId) {
+    return db('transportation')
+    .join('users', 'users.id', 'transportation.userId')
+    .select('transportation.*')
+    .where('transportation.userId', userId)
 };
 
 function update(id, changes) {
@@ -47,8 +58,25 @@ function update(id, changes) {
     });
 };
 
-function remove(id) {
+function updateByItemId(userId, id, changes) {
     return db('transportation')
-    .where({id})
+    .join('users', 'users.id', 'transportation.userId')
+    .where('transportation.userId', userId)
+    .select('transportation.*')
+    .where('transportation.id', id)
+    .update(changes)
+    .then(() => {
+        return db('transportation')
+        .where({id})
+        .first()
+    })
+}
+
+function remove(userId, id) {
+    return db('transportation')
+    .join('users', 'users.id', 'transportation.userId')
+    .where('transportation.userId', userId)
+    .select('transportation.*')
+    .where('transportation.id', id)
     .delete();
 };

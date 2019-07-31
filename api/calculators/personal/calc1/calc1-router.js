@@ -42,7 +42,7 @@ router.get('/:userId/:id', (req, res) => {
     .catch(err => {
         res.status(500).json(err)
     })
-})
+});
 
 router.post('/', (req, res) => {
     const newCalc = req.body;

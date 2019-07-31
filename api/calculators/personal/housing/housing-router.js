@@ -14,12 +14,29 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     const {id} = req.params
-    housing.findById(id)
+    housing.findByUser(id)
     .then(housing => {
         if (housing) {
             res.status(200).json(housing)
         } else {
-            res.status(404).json({message: "That user's personal running total calculator does not exist!"})
+            res.status(404).json({message: "Could not retrieve calculators by user ID"})
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+    })
+});
+
+router.get('/:userId/:id', (req, res) => {
+    const {userId} = req.params
+    const {id} = req.params
+    housing.findByItemId(userId, id)
+    .then(housing => {
+        if (housing) {
+            res.status(200).json(housing)
+        } else {
+            res.status(404).json({message: "Could not retrieve specific calculator by user ID"})
         }
     })
     .catch(err => {
@@ -88,13 +105,48 @@ router.put('/:id', (req, res) => {
     })
 })
 
-router.delete('/:id', (req, res) => {
+router.put('/:userId/:id', (req, res) => {
+    const updatedhousing = req.body;
+    const {id} = req.params;
+    const {userId} = req.body;
+    const {housingTotal} = req.body;
+    const {rent} = req.body;
+    const {deposit} = req.body;
+    if (!userId) {
+        res.status(422).json({message: "Missing updated fields: userId"})
+    }
+    if (!housingTotal) {
+        res.status(422).json({message: "Missing updated fields: housingTotal"})
+    }
+    if (!rent) {
+        res.status(422).json({message: "Missing updated fields: rent"})
+    }
+    if (!deposit) {
+        res.status(422).json({message: "Missing updated fields: deposit"})
+    }
+    housing.updateByItemId(userId, id, updatedhousing)
+    .then(housing => {
+        if (housing) {
+        res.status(201).json(housing)
+        } else {
+        res.status(404).json({message: "This personal calculator for this user does not exist!"})
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+    })
+})
+
+router.delete('/:userId/:id', (req, res) => {
+    const {userId} = req.params
     const {id} = req.params
-    housing.remove(id)
+    housing.remove(userId, id)
     .then(count => {
         if (count > 0) {
             res.status(200).json({message: "This calculator for this user is now removed"})
         } else {
+            console.log(err)
             res.status(404).json({message: "This calculator does not exist!"})
         }
     })

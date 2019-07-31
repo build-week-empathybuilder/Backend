@@ -4,8 +4,10 @@ module.exports = {
     add,
     find,
     findBy,
-    findById,
+    findByUser,
+    findByItemId,
     update,
+    updateByItemId,
     remove,
 };
 
@@ -30,10 +32,19 @@ function findBy(item) {
     .first();
 };
 
-function findById(id) {
+function findByItemId(userId, id) {
     return db('clothing')
-    .where({id})
-    .first();
+    .join('users', 'users.id', 'clothing.userId')
+    .where('clothing.userId', userId)
+    .select('clothing.*')
+    .where('clothing.id', id)
+};
+
+function findByUser(userId) {
+    return db('clothing')
+    .join('users', 'users.id', 'clothing.userId')
+    .select('clothing.*')
+    .where('clothing.userId', userId)
 };
 
 function update(id, changes) {
@@ -47,8 +58,25 @@ function update(id, changes) {
     });
 };
 
-function remove(id) {
+function updateByItemId(userId, id, changes) {
     return db('clothing')
-    .where({id})
+    .join('users', 'users.id', 'clothing.userId')
+    .where('clothing.userId', userId)
+    .select('clothing.*')
+    .where('clothing.id', id)
+    .update(changes)
+    .then(() => {
+        return db('clothing')
+        .where({id})
+        .first()
+    })
+}
+
+function remove(userId, id) {
+    return db('clothing')
+    .join('users', 'users.id', 'clothing.userId')
+    .where('clothing.userId', userId)
+    .select('clothing.*')
+    .where('clothing.id', id)
     .delete();
 };

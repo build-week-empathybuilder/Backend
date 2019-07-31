@@ -17,7 +17,7 @@ const clothingRouter = require('./calculators/personal/clothing/clothing-router.
 const debtRouter = require('./calculators/personal/debt/debt-router.js')
 const foodRouter = require('./calculators/personal/food/food-router.js')
 const healthCareRouter = require('./calculators/personal/health_care/health_care-router.js')
-const housingRouter = require('./calculators/personal/health_care/health_care-router.js')
+const housingRouter = require('./calculators/personal/housing/housing-router.js')
 const transportationRouter = require('./calculators/personal/transportation/transportation-router.js')
 const utilitiesRouter = require('./calculators/personal/utilities/utilities-router.js')
 

@@ -14,12 +14,29 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     const {id} = req.params
-    food.findById(id)
+    food.findByUser(id)
     .then(food => {
         if (food) {
             res.status(200).json(food)
         } else {
-            res.status(404).json({message: "That user's personal running total calculator does not exist!"})
+            res.status(404).json({message: "Could not retrieve calculators by user ID"})
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+    })
+});
+
+router.get('/:userId/:id', (req, res) => {
+    const {userId} = req.params
+    const {id} = req.params
+    food.findByItemId(userId, id)
+    .then(food => {
+        if (food) {
+            res.status(200).json(food)
+        } else {
+            res.status(404).json({message: "Could not retrieve specific calculator by user ID"})
         }
     })
     .catch(err => {
@@ -88,13 +105,48 @@ router.put('/:id', (req, res) => {
     })
 })
 
-router.delete('/:id', (req, res) => {
+router.put('/:userId/:id', (req, res) => {
+    const updatedFood = req.body;
+    const {id} = req.params;
+    const {userId} = req.body;
+    const {foodTotal} = req.body;
+    const {groceries} = req.body;
+    const {restaurantsTakeout} = req.body;
+    if (!userId) {
+        res.status(422).json({message: "Missing updated fields: userId"})
+    }
+    if (!foodTotal) {
+        res.status(422).json({message: "Missing updated fields: foodTotal"})
+    }
+    if (!groceries) {
+        res.status(422).json({message: "Missing updated fields: groceries"})
+    }
+    if (!restaurantsTakeout) {
+        res.status(422).json({message: "Missing updated fields: restaurantsTakeout"})
+    }
+    food.updateByItemId(userId, id, updatedFood)
+    .then(food => {
+        if (food) {
+        res.status(201).json(food)
+        } else {
+        res.status(404).json({message: "This personal calculator for this user does not exist!"})
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+    })
+})
+
+router.delete('/:userId/:id', (req, res) => {
+    const {userId} = req.params
     const {id} = req.params
-    food.remove(id)
+    food.remove(userId, id)
     .then(count => {
         if (count > 0) {
             res.status(200).json({message: "This calculator for this user is now removed"})
         } else {
+            console.log(err)
             res.status(404).json({message: "This calculator does not exist!"})
         }
     })

@@ -38,7 +38,7 @@ function findByItemId(userId, id) {
     .where('calc1.userId', userId)
     .select('calc1.*')
     .where('calc1.id', id)
-}
+};
 
 function findByUser(userId) {
     return db('calc1')
@@ -70,7 +70,7 @@ function updateByItemId(userId, id, changes) {
         .where({id})
         .first()
     })
-}
+};
 
 function remove(userId, id) {
     return db('calc1')
