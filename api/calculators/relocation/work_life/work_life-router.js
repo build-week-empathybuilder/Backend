@@ -14,12 +14,29 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     const {id} = req.params
-    workLife.findById(id)
+    workLife.findByUser(id)
     .then(workLife => {
         if (workLife) {
             res.status(200).json(workLife)
         } else {
-            res.status(404).json({message: "That user's personal running total calculator does not exist!"})
+            res.status(404).json({message: "Could not retrieve calculators by user ID"})
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+    })
+});
+
+router.get('/:userId/:id', (req, res) => {
+    const {userId} = req.params
+    const {id} = req.params
+    workLife.findByItemId(userId, id)
+    .then(workLife => {
+        if (workLife) {
+            res.status(200).json(workLife)
+        } else {
+            res.status(404).json({message: "Could not retrieve specific calculator by user ID"})
         }
     })
     .catch(err => {
@@ -96,13 +113,52 @@ router.put('/:id', (req, res) => {
     })
 })
 
-router.delete('/:id', (req, res) => {
+router.put('/:userId/:id', (req, res) => {
+    const updatedworkLife = req.body;
+    const {id} = req.params;
+    const {userId} = req.body;
+    const {workLifeTotal} = req.body;
+    const {incomeLoss} = req.body;
+    const {jobSkillsTraining} = req.body;
+    const {miscellaneousFees} = req.body;
+    if (!userId) {
+        res.status(422).json({message: "Missing updated fields: userId"})
+    }
+    if (!workLifeTotal) {
+        res.status(422).json({message: "Missing updated fields: workLifeTotal"})
+    }
+    if (!incomeLoss) {
+        res.status(422).json({message: "Missing updated fields: incomeLoss"})
+    }
+    if (!jobSkillsTraining) {
+        res.status(422).json({message: "Missing updated fields: jobSkillsTraining"})
+    }
+    if (!miscellaneousFees) {
+        res.status(422).json({message: "Missing updated fields: miscellaneousFees"})
+    }
+    workLife.updateByItemId(userId, id, updatedworkLife)
+    .then(workLife => {
+        if (workLife) {
+        res.status(201).json(workLife)
+        } else {
+        res.status(404).json({message: "This personal calculator for this user does not exist!"})
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+    })
+})
+
+router.delete('/:userId/:id', (req, res) => {
+    const {userId} = req.params
     const {id} = req.params
-    workLife.remove(id)
+    workLife.remove(userId, id)
     .then(count => {
         if (count > 0) {
             res.status(200).json({message: "This calculator for this user is now removed"})
         } else {
+            console.log(err)
             res.status(404).json({message: "This calculator does not exist!"})
         }
     })

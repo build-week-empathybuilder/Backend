@@ -14,12 +14,29 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     const {id} = req.params
-    calc2.findById(id)
+    calc2.findByUser(id)
     .then(calc => {
         if (calc) {
             res.status(200).json(calc)
         } else {
-            res.status(404).json({message: "That user's personal running total calculator does not exist!"})
+            res.status(404).json({message: "Could not retrieve calculators by user ID"})
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+    })
+});
+
+router.get('/:userId/:id', (req, res) => {
+    const {userId} = req.params
+    const {id} = req.params
+    calc2.findByItemId(userId, id)
+    .then(calc => {
+        if (calc) {
+            res.status(200).json(calc)
+        } else {
+            res.status(404).json({message: "Could not retrieve specific calculator by user ID"})
         }
     })
     .catch(err => {
@@ -104,13 +121,56 @@ router.put('/:id', (req, res) => {
     })
 })
 
-router.delete('/:id', (req, res) => {
+router.put('/:userId/:id', (req, res) => {
+    const updatedCalc = req.body;
+    const {id} = req.params;
+    const {userId} = req.body;
+    const {workLifeTotal} = req.body;
+    const {lodgingTotal} = req.body;
+    const {newHomeTotal} = req.body;
+    const {newTransportationTotal} = req.body;
+    const {miscellaneousExpensesTotal} = req.body;
+    if (!userId) {
+        res.status(422).json({message: "Missing updated fields: userId"})
+    }
+    if (!workLifeTotal) {
+        res.status(422).json({message: "Missing updated fields: workLifeTotal"})
+    }
+    if (!lodgingTotal) {
+        res.status(422).json({message: "Missing updated fields: lodgingTotal"})
+    }
+    if (!newHomeTotal) {
+        res.status(422).json({message: "Missing updated fields: newHomeTotal"})
+    }
+    if (!newTransportationTotal) {
+        res.status(422).json({message: "Missing updated fields: newTransportationTotal"})
+    }
+    if (!miscellaneousExpensesTotal) {
+        res.status(422).json({message: "Missing updated fields: miscellaneousExpensesTotal"})
+    }
+    calc2.updateByItemId(userId, id, updatedCalc)
+    .then(calc => {
+        if (calc) {
+        res.status(201).json(calc)
+        } else {
+        res.status(404).json({message: "This personal calculator for this user does not exist!"})
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json(err)
+    })
+})
+
+router.delete('/:userId/:id', (req, res) => {
+    const {userId} = req.params
     const {id} = req.params
-    calc2.remove(id)
+    calc2.remove(userId, id)
     .then(count => {
         if (count > 0) {
             res.status(200).json({message: "This calculator for this user is now removed"})
         } else {
+            console.log(err)
             res.status(404).json({message: "This calculator does not exist!"})
         }
     })
