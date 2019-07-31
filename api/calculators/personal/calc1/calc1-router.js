@@ -120,4 +120,19 @@ router.put('/:id', (req, res) => {
     })
 })
 
+router.delete('/:id', (req, res) => {
+    const {id} = req.params
+    calc1.remove(id)
+    .then(count => {
+        if (count > 0) {
+            res.status(200).json({message: "This calculator for this user is now removed"})
+        } else {
+            res.status(404).json({message: "This calculator does not exist!"})
+        }
+    })
+    .catch(err => {
+        res.status(500).json(err)
+    })
+})
+
 module.exports = router;
