@@ -13,6 +13,26 @@ exports.up = function(knex) {
       .string('email', 255)
       .notNullable();
   })
+  // this is the running total of both calculators!
+  .createTable('total', total => {
+    total.increments();
+
+    total.integer('userId')
+    .unsigned()
+    .references('id')
+    .inTable('users')
+    .onDelete('CASCADE')
+    .onUpdate('CASCADE')
+
+    total.integer('runningTotal')
+    .unsigned()
+
+    total.integer('calc1Total')
+    .unsigned()
+
+    total.integer('calc2Total')
+    .unsigned()
+  })
   // this is where the tables under CALC1 begin!
   .createTable('calc1', calc1 => {
     calc1.increments();
@@ -233,6 +253,9 @@ exports.up = function(knex) {
 
     calc2.integer('miscellaneousExpensesTotal')
     .unsigned();
+
+    calc2.integer('newHousingTotal')
+    .unsigned();
   })
   .createTable('workLife', work => {
     work.increments();
@@ -353,6 +376,44 @@ exports.up = function(knex) {
     misc.integer('miscellaneousExpensesTotal')
     .unsigned();
   })
+  .createTable('newHousing', newhouse => {
+    newhouse.increments();
+
+    newhouse.integer('userId')
+    .unsigned()
+    .references('id')
+    .inTable('users')
+    .onDelete('CASCADE')
+    .onUpdate('CASCADE')
+
+    newhouse.integer('newHousingTotal')
+    .unsigned();
+
+    newhouse.integer('hotelRate')
+    .unsigned();
+
+    newhouse.integer('expectedLengthOfStay')
+    .unsigned();
+
+    newhouse.integer('lodgingTotal')
+    .unsigned();
+
+    newhouse.integer('housingDeposit')
+    .unsigned();
+
+    newhouse.integer('utilitiesDeposit')
+    .unsigned();
+
+    newhouse.integer('rent')
+    .unsigned();
+
+    newhouse.integer('miscellaneousFees')
+    .unsigned();
+
+    newhouse.integer('newHomeTotal')
+    .unsigned();
+  })
+  
 };
 
 exports.down = function(knex) {

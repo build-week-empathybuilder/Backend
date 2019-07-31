@@ -11,6 +11,9 @@ server.use(express.json());
 const authRouter = require('./auth/auth-router.js');
 const usersRouter = require('./users/users-router.js');
 
+// Total calculator router
+const totalRouter = require('./calculators/total/total-router.js');
+
 // Personal calculator routers
 const calcRouter = require('./calculators/personal/calc1/calc1-router.js')
 const clothingRouter = require('./calculators/personal/clothing/clothing-router.js')
@@ -28,9 +31,13 @@ const miscRouter = require('./calculators/relocation/miscellaneous_expenses/misc
 const newHomeRouter = require('./calculators/relocation/new_home/new_home-router.js')
 const newTransportationRouter = require('./calculators/relocation/new_transportation/new_transportation-router.js')
 const workLifeRouter = require('./calculators/relocation/work_life/work_life-router.js') 
+const newHousingRouter = require ('./calculators/relocation/new_housing/new_housing-router.js')
 
 server.use('/api/auth', authRouter);
 server.use('/api/users', usersRouter);
+
+// Use file for total calculator
+server.use('/api/total', totalRouter);
 
 // Use files for personal calculator
 server.use('/api/calc1', calcRouter);
@@ -49,7 +56,7 @@ server.use('/api/misc', miscRouter);
 server.use('/api/newhome', newHomeRouter);
 server.use('/api/newcar', newTransportationRouter);
 server.use('/api/work', workLifeRouter);
-
+server.use('/api/newhousing', newHousingRouter);
 
 server.get('/', (req, res) => {
     const messageOfTheDay = process.env.MOTD || "Welcome to the server!"
