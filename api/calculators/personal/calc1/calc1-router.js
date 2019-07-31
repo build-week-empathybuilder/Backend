@@ -29,38 +29,38 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const newCalc = req.body;
-    // const {user_id} = req.body;
-    // const {food_total} = req.body;
-    // const {transportation_total} = req.body;
-    // const {health_care_total} = req.body;
-    // const {debt_total} = req.body;
-    // const {housing_total} = req.body;
-    // const {utilities_total} = req.body;
-    // const {clothing_total} = req.body;
-    // if (!user_id) {
-    //     res.status(422).json({message: "Missing fields: user_id"})
-    // }
-    // if (!food_total) {
-    //     res.status(422).json({message: "Missing fields: food_total"})
-    // }
-    // if (!transportation_total) {
-    //     res.status(422).json({message: "Missing fields: transportation_total"})
-    // }
-    // if (!health_care_total) {
-    //     res.status(422).json({message: "Missing fields: health_care_total"})
-    // }
-    // if (!debt_total) {
-    //     res.status(422).json({message: "Missing fields: debt_total"})
-    // }
-    // if (!housing_total) {
-    //     res.status(422).json({message: "Missing fields: housing_total"})
-    // }
-    // if (!utilities_total) {
-    //     res.status(422).json({message: "Missing fields: utilities_total"})
-    // }
-    // if (!clothing_total) {
-    //     res.status(422).json({message: "Missing fields: clothing_total"})
-    // }
+    const {userId} = req.body;
+    const {foodTotal} = req.body;
+    const {transportationTotal} = req.body;
+    const {healthCareTotal} = req.body;
+    const {debtTotal} = req.body;
+    const {housingTotal} = req.body;
+    const {utilitiesTotal} = req.body;
+    const {clothingTotal} = req.body;
+    if (!userId) {
+        res.status(422).json({message: "Missing fields: userId"})
+    }
+    if (!foodTotal) {
+        res.status(422).json({message: "Missing fields: foodTotal"})
+    }
+    if (!transportationTotal) {
+        res.status(422).json({message: "Missing fields: transportationTotal"})
+    }
+    if (!healthCareTotal) {
+        res.status(422).json({message: "Missing fields: healthCareTotal"})
+    }
+    if (!debtTotal) {
+        res.status(422).json({message: "Missing fields: debtTotal"})
+    }
+    if (!housingTotal) {
+        res.status(422).json({message: "Missing fields: housingTotal"})
+    }
+    if (!utilitiesTotal) {
+        res.status(422).json({message: "Missing fields: utilitiesTotal"})
+    }
+    if (!clothingTotal) {
+        res.status(422).json({message: "Missing fields: clothingTotal"})
+    }
     console.log(newCalc);
     calc1.add(newCalc)
     .then(calc => {
