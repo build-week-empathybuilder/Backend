@@ -10,45 +10,45 @@ module.exports = {
 };
 
 function add(item) {
-    return db('health_care')
+    return db('healthCare')
     .insert(item)
     .then(ids => {
         const [id] = ids;
-        return db('health_care')
+        return db('healthCare')
         .where({id})
         .first();
     });
 };
 
 function find() {
-    return db('health_care');
+    return db('healthCare');
 };
 
 function findBy(item) {
-    return db('health_care')
+    return db('healthCare')
     .where(item)
     .first();
 };
 
 function findById(id) {
-    return db('health_care')
+    return db('healthCare')
     .where({id})
     .first();
 };
 
-function update(item, changes) {
-    return db('health_care')
-    .where(item)
+function update(id, changes) {
+    return db('healthCare')
+    .where({id})
     .update(changes)
     .then(() => {
-        return db('health_care')
-        .where(item)
+        return db('healthCare')
+        .where({id})
         .first()
     });
 };
 
 function remove(id) {
-    return db('health_care')
+    return db('healthCare')
     .where({id})
     .delete();
 };

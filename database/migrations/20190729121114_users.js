@@ -86,7 +86,7 @@ exports.up = function(knex) {
     car.integer('parking')
     .unsigned();
 
-    car.integer('publicTransitCosts')
+    car.integer('publicTransit')
     .unsigned();
 
     car.integer('transportationTotal')

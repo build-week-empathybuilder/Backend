@@ -36,13 +36,13 @@ function findById(id) {
     .first();
 };
 
-function update(item, changes) {
+function update(id, changes) {
     return db('transportation')
-    .where(item)
+    .where({id})
     .update(changes)
     .then(() => {
         return db('transportation')
-        .where(item)
+        .where({id})
         .first()
     });
 };
