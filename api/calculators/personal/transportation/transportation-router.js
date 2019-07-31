@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
     const {carPayment} = req.body;
     const {gas} = req.body;
     const {parking} = req.body;
-    const {publicTransit} = req.body;
+    const {localTransport} = req.body;
     if (!userId) {
         res.status(422).json({message: "Missing fields: userId"})
     }
@@ -54,8 +54,8 @@ router.post('/', (req, res) => {
     if (!parking) {
         res.status(422).json({message: "Missing fields: parking"})
     }
-    if (!publicTransit) {
-        res.status(422).json({message: "Missing fields: publicTransit"})
+    if (!localTransport) {
+        res.status(422).json({message: "Missing fields: localTransport"})
     }
     console.log(newtransportation);
     transportation.add(newtransportation)
@@ -76,7 +76,7 @@ router.put('/:id', (req, res) => {
     const {carPayment} = req.body;
     const {gas} = req.body;
     const {parking} = req.body;
-    const {publicTransit} = req.body;
+    const {localTransport} = req.body;
     if (!userId) {
         res.status(422).json({message: "Missing updated fields: userId"})
     }
@@ -95,8 +95,8 @@ router.put('/:id', (req, res) => {
     if (!parking) {
         res.status(422).json({message: "Missing fields: parking"})
     }
-    if (!publicTransit) {
-        res.status(422).json({message: "Missing fields: publicTransit"})
+    if (!localTransport) {
+        res.status(422).json({message: "Missing fields: localTransport"})
     }
     console.log(updatedtransportation);
     transportation.update(id, updatedtransportation)
