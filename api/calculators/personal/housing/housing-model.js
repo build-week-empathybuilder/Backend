@@ -4,8 +4,10 @@ module.exports = {
     add,
     find,
     findBy,
-    findById,
+    findByUser,
+    findByItemId,
     update,
+    updateByItemId,
     remove,
 };
 
@@ -30,10 +32,19 @@ function findBy(item) {
     .first();
 };
 
-function findById(id) {
+function findByItemId(userId, id) {
     return db('housing')
-    .where({id})
-    .first();
+    .join('users', 'users.id', 'housing.userId')
+    .where('housing.userId', userId)
+    .select('housing.*')
+    .where('housing.id', id)
+}
+
+function findByUser(userId) {
+    return db('housing')
+    .join('users', 'users.id', 'housing.userId')
+    .select('housing.*')
+    .where('housing.userId', userId)
 };
 
 function update(id, changes) {
@@ -47,8 +58,25 @@ function update(id, changes) {
     });
 };
 
-function remove(id) {
+function updateByItemId(userId, id, changes) {
     return db('housing')
-    .where({id})
+    .join('users', 'users.id', 'housing.userId')
+    .where('housing.userId', userId)
+    .select('housing.*')
+    .where('housing.id', id)
+    .update(changes)
+    .then(() => {
+        return db('housing')
+        .where({id})
+        .first()
+    })
+}
+
+function remove(userId, id) {
+    return db('housing')
+    .join('users', 'users.id', 'housing.userId')
+    .where('housing.userId', userId)
+    .select('housing.*')
+    .where('housing.id', id)
     .delete();
-};F
+};

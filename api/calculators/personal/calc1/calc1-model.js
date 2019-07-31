@@ -4,8 +4,10 @@ module.exports = {
     add,
     find,
     findBy,
-    findById,
+    findByUser,
+    findByItemId,
     update,
+    updateByItemId,
     remove,
 };
 
@@ -30,10 +32,19 @@ function findBy(item) {
     .first();
 };
 
-function findById(id) {
+function findByItemId(userId, id) {
     return db('calc1')
-    .where({id})
-    .first();
+    .join('users', 'users.id', 'calc1.userId')
+    .where('calc1.userId', userId)
+    .select('calc1.*')
+    .where('calc1.id', id)
+};
+
+function findByUser(userId) {
+    return db('calc1')
+    .join('users', 'users.id', 'calc1.userId')
+    .select('calc1.*')
+    .where('calc1.userId', userId)
 };
 
 function update(id, changes) {
@@ -47,8 +58,25 @@ function update(id, changes) {
     });
 };
 
-function remove(id) {
+function updateByItemId(userId, id, changes) {
     return db('calc1')
-    .where({id})
+    .join('users', 'users.id', 'calc1.userId')
+    .where('calc1.userId', userId)
+    .select('calc1.*')
+    .where('calc1.id', id)
+    .update(changes)
+    .then(() => {
+        return db('calc1')
+        .where({id})
+        .first()
+    })
+};
+
+function remove(userId, id) {
+    return db('calc1')
+    .join('users', 'users.id', 'calc1.userId')
+    .where('calc1.userId', userId)
+    .select('calc1.*')
+    .where('calc1.id', id)
     .delete();
 };

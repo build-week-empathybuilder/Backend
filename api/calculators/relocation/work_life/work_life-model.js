@@ -4,8 +4,10 @@ module.exports = {
     add,
     find,
     findBy,
-    findById,
+    findByUser,
+    findByItemId,
     update,
+    updateByItemId,
     remove,
 };
 
@@ -30,10 +32,19 @@ function findBy(item) {
     .first();
 };
 
-function findById(id) {
+function findByItemId(userId, id) {
     return db('workLife')
-    .where({id})
-    .first();
+    .join('users', 'users.id', 'workLife.userId')
+    .where('workLife.userId', userId)
+    .select('workLife.*')
+    .where('workLife.id', id)
+};
+
+function findByUser(userId) {
+    return db('workLife')
+    .join('users', 'users.id', 'workLife.userId')
+    .select('workLife.*')
+    .where('workLife.userId', userId)
 };
 
 function update(id, changes) {
@@ -47,8 +58,25 @@ function update(id, changes) {
     });
 };
 
-function remove(id) {
+function updateByItemId(userId, id, changes) {
     return db('workLife')
-    .where({id})
+    .join('users', 'users.id', 'workLife.userId')
+    .where('workLife.userId', userId)
+    .select('workLife.*')
+    .where('workLife.id', id)
+    .update(changes)
+    .then(() => {
+        return db('workLife')
+        .where({id})
+        .first()
+    })
+};
+
+function remove(userId, id) {
+    return db('workLife')
+    .join('users', 'users.id', 'workLife.userId')
+    .where('workLife.userId', userId)
+    .select('workLife.*')
+    .where('workLife.id', id)
     .delete();
 };

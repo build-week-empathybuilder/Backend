@@ -59,4 +59,68 @@ Items MUST be in quotes, that is how the server knows which item goes where.
 2) If you do not provide the token, the server will respond with an error. Consequentially, if you provide the server with an expired token, the server will respond with an error. Tokens expire every twenty-four hours from creation.
 3 You can add a number to the end of `auth/users/` if you wish to select only that user. 
 
-## I am building out the rest of this readme as it is completed
+## Viewing the list of calculators
+
+As each endpoint technically does the same thing, I will list the following endpoints and then give you the CRUD requests. 
+
+To view the running totals of the personal calculators, these are the following endpoints:
+-`api/calc1/` // personal total calculator
+-`api/clothing/` // clothing calculator
+-`api/debt/` // debt calculator
+-`api/food/` // food calculator
+-`api/health/` // health calculator
+-`api/housing/` // housing calculator
+-`api/car/` // transportation calculator
+-`api/bills/` // utilities calculator
+--GET: Gets all of the user calculators
+--POST: Adds to all of the user calculators, ID increments even after deletion (so if I delete item 8, and then add a new item, it will be item 9)
+-`api/calc1/:id` 
+-`api/clothing/:id`
+-`api/debt/:id`
+-`api/food/:id`
+-`api/health/:id`
+-`api/housing/:id`
+-`api/car/:id`
+-`api/bills/:id`
+--GET: Get the specific user calculator by the ID of the calculator
+--PUT: Update the specific user calculator by the ID of the calculator
+--DELETE: Remove the specific user calculator by the ID of the calculator
+-`api/calc1/:userId/:id` 
+-`api/clothing/:userId/:id`
+-`api/debt/:userId/:id`
+-`api/food/:userId/:id`
+-`api/health/:userId/:id`
+-`api/housing/:userId/:id`
+-`api/car/:userId/:id`
+-`api/bills/:userId/:id`
+--GET: Get that specific user calculator by the ID of that user
+--PUT: Updates the specific user calculator by the ID of the calculator, by the user ID
+--DELETE: Deletes the user calculator by the ID of the calculator
+
+To view the running totals of the relocation calculators, these are the following endpoints:
+-`api/calc2/` // relocation total calculator
+-`api/lodging/` // lodging calculator
+-`api/misc/` // miscellaneous expenses calculator
+-`api/newhome/` // new home calculator
+-`api/newcar/` // new transportation calculator
+-`api/work/` // work and life calculator
+--GET: Gets all of the user calculators
+--POST: Adds to all of the user calculators, ID increments even after deletion (so if I delete item 8, and then add a new item, it will be item 9)
+-`api/calc2/:id`
+-`api/lodging/:id`
+-`api/misc/:id`
+-`api/newhome/:id`
+-`api/newcar/:id`
+-`api/work/:id`
+--GET: Get the specific user calculator by the ID of the calculator
+--PUT: Update the specific user calculator by the ID of the calculator
+--DELETE: Remove the specific user calculator by the ID of the calculator
+-`api/calc2/:userId/:id`
+-`api/lodging/:userId/:id`
+-`api/misc/:userId/:id`
+-`api/newhome/:userId/:id`
+-`api/newcar/:userId/:id`
+-`api/work/:userId/:id`
+--GET: Get that specific user calculator by the ID of that user
+--PUT: Updates the specific user calculator by the ID of the calculator, by the user ID
+--DELETE: Deletes the user calculator by the ID of the calculator
