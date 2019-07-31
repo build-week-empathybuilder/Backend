@@ -104,23 +104,23 @@ To view the running totals of the relocation calculators, these are the followin
 - `api/newhome/` // new home calculator
 - `api/newcar/` // new transportation calculator
 - `api/work/` // work and life calculator
---GET: Gets all of the user calculators
---POST: Adds to all of the user calculators, ID increments even after deletion (so if I delete item 8, and then add a new item, it will be item 9)
+- -GET: Gets all of the user calculators
+- -POST: Adds to all of the user calculators, ID increments even after deletion (so if I delete item 8, and then add a new item, it will be item 9)
 - `api/calc2/:id`
 - `api/lodging/:id`
 - `api/misc/:id`
 - `api/newhome/:id`
 - `api/newcar/:id`
 - `api/work/:id`
---GET: Get the specific user calculator by the ID of the calculator
---PUT: Update the specific user calculator by the ID of the calculator
---DELETE: Remove the specific user calculator by the ID of the calculator
+- -GET: Get the specific user calculator by the ID of the calculator
+- -PUT: Update the specific user calculator by the ID of the calculator
+- -DELETE: Remove the specific user calculator by the ID of the calculator
 - `api/calc2/:userId/:id`
 - `api/lodging/:userId/:id`
 - `api/misc/:userId/:id`
 - `api/newhome/:userId/:id`
 - `api/newcar/:userId/:id`
 - `api/work/:userId/:id`
---GET: Get that specific user calculator by the ID of that user
---PUT: Updates the specific user calculator by the ID of the calculator, by the user ID
---DELETE: Deletes the user calculator by the ID of the calculator
+- -GET: Get that specific user calculator by the ID of that user
+- -PUT: Updates the specific user calculator by the ID of the calculator, by the user ID
+- -DELETE: Deletes the user calculator by the ID of the calculator
