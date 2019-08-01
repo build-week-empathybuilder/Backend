@@ -3,6 +3,7 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 
 const tokenMaker = require('../../auth-middleware/token-maker.js');
+const authenticate = require('../../auth-middleware/authenticate.js');
 const Users = require('../users/users-model.js');
 
 router.post('/register', (req, res) => {
@@ -39,6 +40,17 @@ router.post('/login', (req, res) => {
     .catch(error => {
         console.log(error)
         res.status(500).json(error);
+    })
+})
+
+router.delete('/:id', authenticate, (req, res) => {
+    Users.remove(req.params.id)
+    .then(count => {
+        if (count > 0) {
+            res.status(200).json({message: "This user has been removed from the database"})
+        } else {
+            res.status(404).json({message: "This user does not exist!"})
+        }
     })
 })
 

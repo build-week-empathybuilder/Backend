@@ -2,7 +2,9 @@ const router = require('express').Router();
 
 const debt = require('./debt-model.js');
 
-router.get('/', (req, res) => {
+const authenticate = require('../../../../auth-middleware/authenticate.js');
+
+router.get('/', authenticate, (req, res) => {
     debt.find()
     .then(debt => {
         res.status(200).json(debt)
@@ -12,7 +14,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticate, (req, res) => {
     const {id} = req.params
     debt.findByUser(id)
     .then(debt => {
@@ -28,7 +30,7 @@ router.get('/:id', (req, res) => {
     })
 });
 
-router.get('/:userId/:id', (req, res) => {
+router.get('/:userId/:id', authenticate, (req, res) => {
     const {userId} = req.params
     const {id} = req.params
     debt.findByItemId(userId, id)
@@ -44,7 +46,7 @@ router.get('/:userId/:id', (req, res) => {
     })
 });
 
-router.post('/', (req, res) => {
+router.post('/', authenticate, (req, res) => {
     const newdebt = req.body;
     const {userId} = req.body;
     const {debtTotal} = req.body;
@@ -76,7 +78,7 @@ router.post('/', (req, res) => {
     })
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticate, (req, res) => {
     const updatedDebt = req.body;
     const {id} = req.params;
     const {userId} = req.body;
@@ -113,7 +115,7 @@ router.put('/:id', (req, res) => {
     })
 })
 
-router.put('/:userId/:id', (req, res) => {
+router.put('/:userId/:id', authenticate, (req, res) => {
     const updatedDebt = req.body;
     const {id} = req.params;
     const {userId} = req.body;
@@ -150,7 +152,7 @@ router.put('/:userId/:id', (req, res) => {
     })
 })
 
-router.delete('/:userId/:id', (req, res) => {
+router.delete('/:userId/:id', authenticate, (req, res) => {
     const {userId} = req.params
     const {id} = req.params
     debt.remove(userId, id)

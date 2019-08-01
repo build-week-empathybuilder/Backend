@@ -2,7 +2,9 @@ const router = require('express').Router();
 
 const housing = require('./housing-model.js');
 
-router.get('/', (req, res) => {
+const authenticate = require('../../../../auth-middleware/authenticate.js');
+
+router.get('/', authenticate, (req, res) => {
     housing.find()
     .then(housing => {
         res.status(200).json(housing)
@@ -12,7 +14,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticate, (req, res) => {
     const {id} = req.params
     housing.findByUser(id)
     .then(housing => {
@@ -28,7 +30,7 @@ router.get('/:id', (req, res) => {
     })
 });
 
-router.get('/:userId/:id', (req, res) => {
+router.get('/:userId/:id', authenticate, (req, res) => {
     const {userId} = req.params
     const {id} = req.params
     housing.findByItemId(userId, id)
@@ -44,7 +46,7 @@ router.get('/:userId/:id', (req, res) => {
     })
 });
 
-router.post('/', (req, res) => {
+router.post('/', authenticate, (req, res) => {
     const newhousing = req.body;
     const {userId} = req.body;
     const {housingTotal} = req.body;
@@ -72,7 +74,7 @@ router.post('/', (req, res) => {
     })
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticate, (req, res) => {
     const updatedhousing = req.body;
     const {id} = req.params;
     const {userId} = req.body;
@@ -105,7 +107,7 @@ router.put('/:id', (req, res) => {
     })
 })
 
-router.put('/:userId/:id', (req, res) => {
+router.put('/:userId/:id', authenticate, (req, res) => {
     const updatedhousing = req.body;
     const {id} = req.params;
     const {userId} = req.body;
@@ -138,7 +140,7 @@ router.put('/:userId/:id', (req, res) => {
     })
 })
 
-router.delete('/:userId/:id', (req, res) => {
+router.delete('/:userId/:id', authenticate, (req, res) => {
     const {userId} = req.params
     const {id} = req.params
     housing.remove(userId, id)

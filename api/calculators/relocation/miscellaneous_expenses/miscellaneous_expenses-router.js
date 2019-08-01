@@ -2,7 +2,9 @@ const router = require('express').Router();
 
 const misc = require('./miscellaneous_expenses-model');
 
-router.get('/', (req, res) => {
+const authenticate = require('../../../../auth-middleware/authenticate.js');
+
+router.get('/', authenticate, (req, res) => {
     misc.find()
     .then(misc => {
         res.status(200).json(misc)
@@ -12,7 +14,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticate, (req, res) => {
     const {id} = req.params
     misc.findByUser(id)
     .then(misc => {
@@ -28,7 +30,7 @@ router.get('/:id', (req, res) => {
     })
 });
 
-router.get('/:userId/:id', (req, res) => {
+router.get('/:userId/:id', authenticate, (req, res) => {
     const {userId} = req.params
     const {id} = req.params
     misc.findByItemId(userId, id)
@@ -44,7 +46,7 @@ router.get('/:userId/:id', (req, res) => {
     })
 });
 
-router.post('/', (req, res) => {
+router.post('/', authenticate, (req, res) => {
     const newmisc = req.body;
     const {userId} = req.body;
     const {storageUnit} = req.body;
@@ -84,7 +86,7 @@ router.post('/', (req, res) => {
     })
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticate, (req, res) => {
     const updatedmisc = req.body;
     const {id} = req.params;
     const {userId} = req.body;
@@ -129,7 +131,7 @@ router.put('/:id', (req, res) => {
     })
 })
 
-router.put('/:userId/:id', (req, res) => {
+router.put('/:userId/:id', authenticate, (req, res) => {
     const updatedmisc = req.body;
     const {id} = req.params;
     const {userId} = req.body;
@@ -174,7 +176,7 @@ router.put('/:userId/:id', (req, res) => {
     })
 })
 
-router.delete('/:userId/:id', (req, res) => {
+router.delete('/:userId/:id', authenticate, (req, res) => {
     const {userId} = req.params
     const {id} = req.params
     misc.remove(userId, id)

@@ -2,7 +2,9 @@ const router = require('express').Router();
 
 const transportation = require('./transportation-model.js');
 
-router.get('/', (req, res) => {
+const authenticate = require('../../../../auth-middleware/authenticate.js');
+
+router.get('/', authenticate, (req, res) => {
     transportation.find()
     .then(transportation => {
         res.status(200).json(transportation)
@@ -12,7 +14,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticate, (req, res) => {
     const {id} = req.params
     transportation.findByUser(id)
     .then(transportation => {
@@ -28,7 +30,7 @@ router.get('/:id', (req, res) => {
     })
 });
 
-router.get('/:userId/:id', (req, res) => {
+router.get('/:userId/:id', authenticate, (req, res) => {
     const {userId} = req.params
     const {id} = req.params
     transportation.findByItemId(userId, id)
@@ -44,7 +46,7 @@ router.get('/:userId/:id', (req, res) => {
     })
 });
 
-router.post('/', (req, res) => {
+router.post('/', authenticate, (req, res) => {
     const newtransportation = req.body;
     const {userId} = req.body;
     const {transportationTotal} = req.body;
@@ -84,7 +86,7 @@ router.post('/', (req, res) => {
     })
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticate, (req, res) => {
     const updatedtransportation = req.body;
     const {id} = req.params;
     const {userId} = req.body;
@@ -129,7 +131,7 @@ router.put('/:id', (req, res) => {
     })
 })
 
-router.put('/:userId/:id', (req, res) => {
+router.put('/:userId/:id', authenticate, (req, res) => {
     const updatedtransportation = req.body;
     const {id} = req.params;
     const {userId} = req.body;
@@ -174,7 +176,7 @@ router.put('/:userId/:id', (req, res) => {
     })
 })
 
-router.delete('/:userId/:id', (req, res) => {
+router.delete('/:userId/:id', authenticate, (req, res) => {
     const {userId} = req.params
     const {id} = req.params
     transportation.remove(userId, id)

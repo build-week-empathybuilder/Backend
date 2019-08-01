@@ -2,7 +2,9 @@ const router = require('express').Router();
 
 const lodging = require('./lodging-model.js');
 
-router.get('/', (req, res) => {
+const authenticate = require('../../../../auth-middleware/authenticate.js');
+
+router.get('/', authenticate, (req, res) => {
     lodging.find()
     .then(lodge => {
         res.status(200).json(lodge)
@@ -12,7 +14,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticate, (req, res) => {
     const {id} = req.params
     lodging.findByUser(id)
     .then(lodging => {
@@ -28,7 +30,7 @@ router.get('/:id', (req, res) => {
     })
 });
 
-router.get('/:userId/:id', (req, res) => {
+router.get('/:userId/:id', authenticate,(req, res) => {
     const {userId} = req.params
     const {id} = req.params
     lodging.findByItemId(userId, id)
@@ -44,7 +46,7 @@ router.get('/:userId/:id', (req, res) => {
     })
 });
 
-router.post('/', (req, res) => {
+router.post('/', authenticate, (req, res) => {
     const newlodge = req.body;
     const {userId} = req.body;
     const {hotelRate} = req.body;
@@ -72,7 +74,7 @@ router.post('/', (req, res) => {
     })
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticate, (req, res) => {
     const updatedlodge = req.body;
     const {id} = req.params;
     const {userId} = req.body;
@@ -105,7 +107,7 @@ router.put('/:id', (req, res) => {
     })
 })
 
-router.put('/:userId/:id', (req, res) => {
+router.put('/:userId/:id', authenticate, (req, res) => {
     const updatedlodge = req.body;
     const {id} = req.params;
     const {userId} = req.body;
@@ -138,7 +140,7 @@ router.put('/:userId/:id', (req, res) => {
     })
 })
 
-router.delete('/:userId/:id', (req, res) => {
+router.delete('/:userId/:id', authenticate, (req, res) => {
     const {userId} = req.params
     const {id} = req.params
     lodging.remove(userId, id)
