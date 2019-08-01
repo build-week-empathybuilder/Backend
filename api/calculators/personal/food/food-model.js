@@ -63,7 +63,7 @@ function updateByItemId(userId, id, changes) {
     .join('users', 'users.id', 'food.userId')
     .where('food.userId', userId)
     .select('food.*')
-    .where('food.id', id)
+    .where('food.userId', userId)
     .update(changes)
     .then(() => {
         return db('food')

@@ -107,7 +107,7 @@ router.put('/:id', authenticate, (req, res) => {
 router.put('/:userId/:id', authenticate, (req, res) => {
     const updatedFood = req.body;
     const {id} = req.params;
-    const {userId} = req.body;
+    const {userId} = req.params;
     const {groceries} = req.body;
     const {restaurantsTakeout} = req.body;
     if (!groceries) {
