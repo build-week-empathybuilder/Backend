@@ -1,9 +1,7 @@
 const db = require('../../database/dbConfig.js')
 
 module.exports = {
-    find,
     findBy,
-    findById,
     add,
     remove,
 }
