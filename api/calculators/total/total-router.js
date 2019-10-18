@@ -65,7 +65,6 @@ router.post('/', authenticate, (req, res) => {
     if (!calc2Total) {
         res.status(422).json({message: "Missing fields: calc2Total"})
     }
-    console.log(newCalc);
     total.add(newCalc)
     .then(calc => {
         res.status(201).json(calc)

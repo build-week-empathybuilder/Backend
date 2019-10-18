@@ -6,6 +6,12 @@ const tokenMaker = require('../../auth-middleware/token-maker.js');
 const authenticate = require('../../auth-middleware/authenticate.js');
 const Users = require('../users/users-model.js');
 
+router.get('/users', (req, res) => {
+    Users.find()
+    .then(users => {
+        res.status(200).json(users)
+    })
+})
 router.post('/register', (req, res) => {
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 10);
@@ -38,7 +44,6 @@ router.post('/login', (req, res) => {
         }
     })
     .catch(error => {
-        console.log(error)
         res.status(500).json(error);
     })
 })

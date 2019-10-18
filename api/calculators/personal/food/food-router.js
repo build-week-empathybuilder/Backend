@@ -81,15 +81,7 @@ router.put('/:id', authenticate, (req, res) => {
     const {foodTotal} = req.body;
     const {groceries} = req.body;
     const {restaurantsTakeout} = req.body;
-    if (!userId) {
-        res.status(422).json({message: "Missing updated fields: userId"})
-    }
-    if (!groceries) {
-        res.status(422).json({message: "Missing updated fields: groceries"})
-    }
-    if (!restaurantsTakeout) {
-        res.status(422).json({message: "Missing updated fields: restaurantsTakeout"})
-    }
+
     console.log(updatedFood);
     food.update(id, updatedFood)
     .then(food => {
@@ -110,6 +102,7 @@ router.put('/:userId/:id', authenticate, (req, res) => {
     const {userId} = req.params;
     const {groceries} = req.body;
     const {restaurantsTakeout} = req.body;
+    const {foodTotal} = (req.body.groceries + req.body.restaurantsTakeout)
     if (!groceries) {
         res.status(422).json({message: "Missing updated fields: groceries"})
     }
